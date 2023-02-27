@@ -4,7 +4,7 @@ import org.example.model.Employee;
 
 import java.util.List;
 
-public interface PersonService {
+public interface EmployeeService {
     void add(Employee employee);
 
     Employee getEmployeeById(int id);

@@ -1,6 +1,7 @@
 package org.example.service;
 
 import org.example.dao.EmployeeDao;
+import org.example.exceptions.EmpException;
 import org.example.model.Employee;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -8,10 +9,10 @@ import org.springframework.transaction.annotation.Transactional;
 import java.util.List;
 
 @Service
-public class PersonServiceImpl implements PersonService{
+public class EmployeeServiceImpl implements EmployeeService {
     private EmployeeDao employeeDao;
 
-    public PersonServiceImpl(EmployeeDao employeeDao) {
+    public EmployeeServiceImpl(EmployeeDao employeeDao) {
         this.employeeDao = employeeDao;
     }
 
@@ -24,6 +25,10 @@ public class PersonServiceImpl implements PersonService{
     @Override
     @Transactional
     public Employee getEmployeeById(int id) {
+        Employee employee = employeeDao.getEmployeeById(id);
+        if (employee == null) {
+            throw new EmpException("Employee with id = " + id + " doesn't exist");
+        }
         return employeeDao.getEmployeeById(id);
     }
 
@@ -42,6 +47,10 @@ public class PersonServiceImpl implements PersonService{
     @Override
     @Transactional
     public void deleteEmployeeById(int id) {
+        Employee employee = employeeDao.getEmployeeById(id);
+        if (employee == null) {
+            throw new EmpException("Employee with id = " + id + " doesn't exist");
+        }
         employeeDao.deleteEmployeeById(id);
     }
 }

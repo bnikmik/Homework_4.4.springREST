@@ -36,7 +36,7 @@ public class HibernateConfig {
     public LocalSessionFactoryBean getSessionFactory() {
         LocalSessionFactoryBean sessionFactory = new LocalSessionFactoryBean();
         sessionFactory.setDataSource(getDataSource());
-        sessionFactory.setPackagesToScan("org.example.entity");
+        sessionFactory.setPackagesToScan("org.example.model");
 
         Properties properties = new Properties();
         properties.setProperty("dialect", "org.hibernate.dialect.PostgreSQLDialect");
