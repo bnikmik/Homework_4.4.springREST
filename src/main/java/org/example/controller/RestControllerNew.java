@@ -31,7 +31,7 @@ public class RestControllerNew {
         return employee;
     }
 
-    @PutMapping("/employees")
+    @PatchMapping("/employees")
     public Employee updateEmployee(@RequestBody Employee employee) {
         employeeService.updateEmployee(employee);
         return employee;
